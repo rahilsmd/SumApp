@@ -4,4 +4,3 @@ This project is a simple Liberty Profile app that adds two integers.  Not much m
 
 So please adjust your expectations.
 
-Test Change.
