@@ -14,8 +14,6 @@ public class AdderTest {
 		int actual = adder.add(1, 1);
 		Assert.assertEquals(2, actual);
 		
-		actual = adder.add(3, 3);
-		Assert.assertEquals(6, actual);
 		
 	}
 }
