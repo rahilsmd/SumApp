@@ -5,9 +5,12 @@ public class Adder {
 	
 	public int add( int a, int b ) {
 		int sum = a + b;
-		if( a == 3 ) {  // introduce an intermittent error
+		
+		 // introduce an intermittent error
+		if( a == 3 ) { 
 			sum = a*a + b*b;
 		} 
+		
 		return sum;
 	}
 	
