@@ -32,13 +32,7 @@ podTemplate(label: label,
 	  }
 	  stage( 'Clean Up Existing Deployments' ) {
 		container('kubectl') {
-		  withCredentials([[$class: 'UsernamePasswordMultiBinding',
-							  credentialsId: 'icp-id',
-							  usernameVariable: 'DOCKER_HUB_USER',
-							  passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
-			  
-			  sh "kubectl delete deployments -n ${namespace} --selector=app=${selector}"
-		  }
+		  sh "kubectl delete deployments -n ${namespace} --selector=app=${selector}"
 		}
 	  }
 	  stage( 'Deploy to Cluster' ) {
