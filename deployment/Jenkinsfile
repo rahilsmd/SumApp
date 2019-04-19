@@ -37,16 +37,12 @@ podTemplate(label: label,
 	  }
 	  stage( 'Deploy to Cluster' ) {
 		container('kubectl') {
-		  withCredentials([[$class: 'UsernamePasswordMultiBinding',
-							  credentialsId: 'icp-id',
-							  usernameVariable: 'DOCKER_HUB_USER',
-							  passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
-			  sh "template=`cat "${deployment}" | sed \"s/{{IMAGE}}/${image}/g\"`"
+		  sh "cat ${deployment}"
+		  sh "template=`cat \"${deployment}\" | sed \"s/{{IMAGE}}/${image}/g\"`"
 
-			  sh "echo \"$template\" | kubectl apply -n ${namespace} -f - "
-			  sh "sleep 5"
-			  sh "kubectl apply -n ${namespace} -f ${service}"
-		  }
+		  sh "echo \"$template\" | kubectl apply -n ${namespace} -f - "
+		  sh "sleep 5"
+		  sh "kubectl apply -n ${namespace} -f ${service}"
 		}
 	  }
 	}
