@@ -42,7 +42,7 @@ podTemplate(label: label,
 	  }
 	  stage( 'Clean Up Existing Deployments' ) {
 		container('kubectl') {
-		  sh "kubectl delete deployments -n ${namespace} --selector=app=${selector}"
+		  sh "kubectl delete deployments -n ${namespace} --selector=app=sumapp"
 		}
 	  }
 	  stage( 'Deploy to Cluster' ) {
