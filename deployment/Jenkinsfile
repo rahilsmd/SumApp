@@ -22,10 +22,10 @@ podTemplate(label: label,
 	  stage('Build Docker image') {
 		container('docker') {
 		  docker.withRegistry("https://${dockerRegistry}", 'icp-id') {
-			sh "docker build -t https://${dockerRegistry}/${namespace}/${image}:${tag} ."
-			sh "docker push https://${dockerRegistry}/${namespace}/${image}:${tag}"
-			sh "docker tag https://${dockerRegistry}/${namespace}/${image}:${tag} ${image}:latest"
-			sh "docker push https://${dockerRegistry}/${namespace}/${image}:latest"
+			sh "docker build -t ${dockerRegistry}/${namespace}/${image}:${tag} ."
+			sh "docker push ${dockerRegistry}/${namespace}/${image}:${tag}"
+			sh "docker tag ${dockerRegistry}/${namespace}/${image}:${tag} ${image}:latest"
+			sh "docker push ${dockerRegistry}/${namespace}/${image}:latest"
 		  }
 		}
 	  }
