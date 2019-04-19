@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: sumapp
-        image: devops.icp:8500/demo/sumapp
+        image: {{IMAGE}}
         imagePullPolicy: Always
         ports:
         - containerPort: 9080
