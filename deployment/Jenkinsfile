@@ -1,4 +1,14 @@
+/*
+This pipeline script requires the following parameters to be set:
 
+dockerRegistry     : the hostname of the ICP docker registry (i.e. mycluster.icp:8500 )
+namespace          : the target namespace for deployment, and image registry
+image              : the base image name (not including namespace or tag)
+tag                : the image tag (i.e. 1.0.1)
+
+It also expects there to be a Jenkins credential icp-id used to access the ICP docker registry.
+
+*/
 def label = "sumapp-${UUID.randomUUID().toString()}"
 podTemplate(label: label, 
 	containers: [
@@ -38,9 +48,9 @@ podTemplate(label: label,
 	  stage( 'Deploy to Cluster' ) {
 		container('kubectl') {
 		  sh "sed -i -e s/{{IMAGE}}/'${dockerRegistry}\\/${namespace}\\/${image}:latest'/g ${deployment} "
-		  sh "kubectl apply -n ${namespace} -f ${deployment}"
+		  sh "kubectl apply -n ${namespace} -f sumapp-deploy.yaml"
 		  sh "sleep 5"
-		  sh "kubectl apply -n ${namespace} -f ${service}"
+		  sh "kubectl apply -n ${namespace} -f sumapp-svc.yaml"
 		}
 	  }
 	}
