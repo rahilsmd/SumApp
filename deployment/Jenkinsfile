@@ -47,7 +47,7 @@ podTemplate(label: label,
 							  credentialsId: 'icp-id',
 							  usernameVariable: 'DOCKER_HUB_USER',
 							  passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
-			  sh template=`cat "${deployment}" | sed "s/{{IMAGE}}/$image/g"`
+			  sh template=`cat "${deployment}" | sed "s/{{IMAGE}}/${image}/g"`
 
 			  sh echo "$template" | kubectl apply -n ${namespace} -f -
 			  # sh "kubectl apply -n ${namespace} -f ${deployment}"
