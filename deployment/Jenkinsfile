@@ -47,10 +47,10 @@ podTemplate(label: label,
 	  }
 	  stage( 'Deploy to Cluster' ) {
 		container('kubectl') {
-		  sh "sed -i -e s/{{IMAGE}}/'${dockerRegistry}\\/${namespace}\\/${image}:latest'/g sumapp-deploy.yaml "
-		  sh "kubectl apply -n ${namespace} -f sumapp-deploy.yaml"
+		  sh "sed -i -e s/{{IMAGE}}/'${dockerRegistry}\\/${namespace}\\/${image}:latest'/g deployment/sumapp-deploy.yaml "
+		  sh "kubectl apply -n ${namespace} -f deployment/sumapp-deploy.yaml"
 		  sh "sleep 5"
-		  sh "kubectl apply -n ${namespace} -f sumapp-svc.yaml"
+		  sh "kubectl apply -n ${namespace} -f deployment/sumapp-svc.yaml"
 		}
 	  }
 	}
