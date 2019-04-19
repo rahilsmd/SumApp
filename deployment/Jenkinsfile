@@ -37,7 +37,8 @@ podTemplate(label: label,
 	  }
 	  stage( 'Deploy to Cluster' ) {
 		container('kubectl') {
-		  sh "sed -i -e 's/{{IMAGE}}/${image}/g' ${deployment} "
+		  sh "IMG=${dockerRegistry}\/${namespace}\/${image}:latest"
+		  sh "sed -i -e 's/{{IMAGE}}/$IMG/g' ${deployment} "
 		  sh "cat \"${deployment}\""
 		  sh "kubectl apply -n ${namespace} -f ${deployment}"
 		  sh "sleep 5"
