@@ -9,9 +9,6 @@ podTemplate(label: label,
 	) {
 	
 	node(label) {
-		
-          def 
-		
 	  
 	  stage('Get Source') {
 		git "https://github.com/IBM-ICP-CoC/SumApp.git"
