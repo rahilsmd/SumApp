@@ -35,7 +35,7 @@ podTemplate(label: label,
 		  docker.withRegistry("https://${dockerRegistry}", 'icp-id') {
 			sh "docker build -t ${dockerRegistry}/${namespace}/${image}:${tag} ."
 			sh "docker push ${dockerRegistry}/${namespace}/${image}:${tag}"
-			sh "docker tag ${dockerRegistry}/${namespace}/${image}:${tag} ${image}:latest"
+			sh "docker tag ${dockerRegistry}/${namespace}/${image}:${tag} ${dockerRegistry}/${namespace}/${image}:latest"
 			sh "docker push ${dockerRegistry}/${namespace}/${image}:latest"
 		  }
 		}
