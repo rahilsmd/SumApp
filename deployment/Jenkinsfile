@@ -9,7 +9,7 @@ tag                : the image tag (i.e. 1.0.1)
 It also expects there to be a Jenkins credential icp-id used to access the ICP docker registry.
 
 */
-def label = "sumapp-${UUID.randomUUID().toString()}"
+def label = "sumapp-${BUILD_ID}"
 podTemplate(label: label, 
 	containers: [
 	  containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
