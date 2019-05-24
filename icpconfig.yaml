@@ -1,0 +1,55 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: ilon1/ca.pem
+    server: https://172.16.70.57:8001
+  name: ilon1
+- cluster:
+    certificate-authority: /Users/smith/.minikube/ca.crt
+    server: https://192.168.99.100:8443
+  name: minikube
+- cluster:
+    insecure-skip-tls-verify: true
+    server: https://9.30.44.17:8001
+  name: mycluster
+- cluster:
+    insecure-skip-tls-verify: true
+    server: https://9.30.214.196:8001
+  name: mycluster.icp
+contexts:
+- context:
+    cluster: ilon1
+    namespace: namespace07
+    user: ilon1-user
+  name: ilon1-context
+- context:
+    cluster: minikube
+    user: minikube
+  name: minikube
+- context:
+    cluster: mycluster
+    namespace: default
+    user: admin
+  name: mycluster-context
+- context:
+    cluster: mycluster.icp
+    namespace: default
+    user: admin
+  name: mycluster.icp-context
+current-context: mycluster-context
+kind: Config
+preferences: {}
+users:
+- name: admin
+  user:
+    token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiZDRkOTJlOTljOTExMDI3NzU3NDMyYjEzYjAxZjcwNjdhNmYyN2Y5ZiIsInJlYWxtTmFtZSI6ImN1c3RvbVJlYWxtIiwidW5pcXVlU2VjdXJpdHlOYW1lIjoiYWRtaW4iLCJpc3MiOiJodHRwczovL215Y2x1c3Rlci5pY3A6OTQ0My9vaWRjL2VuZHBvaW50L09QIiwiYXVkIjoiMGQ5Y2YyZDEyNTdkMDJhMTA0ZGU0NDkxODE5ZjIzMWMiLCJleHAiOjE1NTg3NTU4MzAsImlhdCI6MTU1ODcyNzAzMCwic3ViIjoiYWRtaW4iLCJ0ZWFtUm9sZU1hcHBpbmdzIjpbXX0.k3lmfuy297RnJDztTXYgU4ojmIZLSy7n_fhOdZAPBwHLc09dbuY5VW8eSNMoLrWuAuQUqCq8Xi3hAWgm_MgWejUGQv0veSuZ_geHUk2Vu70qNOLblPgpp3xPxEKLBHdlM_B1jBqB6ZeG43fp5Izo8BK7JXvV7fnXaUXHrwZgzZfu6m2ZWK6xcnzZyeQhWD7B3DaYbuBZHBCG-BgzeBlJEjxFlksXSnJXvLnuR2Wu80dLgz8TFz0LsP9mJj2kG_i8s2yjq6TTpQKeyMVGexKv0FOX6rA4-bmLu5wmpJudkfIqyqR84jDwAJG5YC9oPrEMjao3xIQB3b6xyZQWCxeNEA
+- name: ilon1-user
+  user:
+    token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiYjNmZGI5YTA5ZjlmY2VhNDM0YjlkZjg3MGY5MzQwZGFlZWRhYzVkNiIsInJlYWxtTmFtZSI6ImN1c3RvbVJlYWxtIiwidW5pcXVlU2VjdXJpdHlOYW1lIjoidXNlcjciLCJpc3MiOiJodHRwczovL2lsb24xLmljcDo5NDQzL29pZGMvZW5kcG9pbnQvT1AiLCJhdWQiOiJkMGIwOGIzZGQxYWUzM2FlNWRhNTE1YzQwZGRhYWZlYyIsImV4cCI6MTU1ODczNjc5MCwiaWF0IjoxNTU4NzA3OTkwLCJzdWIiOiJ1c2VyNyIsInRlYW1Sb2xlTWFwcGluZ3MiOlsiaWNwOnRlYW0tMDc6YWRtaW4iLCJpY3A6ZGVmYXVsdDptZW1iZXIiLCJpY3A6ZGVmYXVsdDp0ZWFtYWRtaW4iXX0.cvDgGFNLr23gR9d7JLs4neTiPSUm5u0bVCxBql65_zNzhTN_UwLKQ4iMGT0r5mBv57GGIbYcpsk3pu_5ay5c3dGasRc_8Zk2DdipHKRchLmrQughnSQNBWghKlaleWKrUsCUi35fjSYo9NkBRwMiCuqWrxsS_QMvQTC88Mb6uwzPeYJNENAyUiTtF4UATtgRrM3qcM4OKiKl9r6w9t6T_k5VxCm-9J1r1A1pl744He5lmOH_b4ySFg2R2Z1m9oKhJ4ZvTu35gO0ob4qUEMcF-P1PHohwLG4BylR5AyS4K5G3Z4XApPJgIUTZdsJhSxfTjmJ1Ey87h6u-Gv_27p-GgA
+- name: minikube
+  user:
+    client-certificate: /Users/smith/.minikube/client.crt
+    client-key: /Users/smith/.minikube/client.key
+- name: user7
+  user:
+    token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiZGM2MmJiZmViYmFhZGM0YjRmNWZkMjI4OTk0YjNkYzY4NWNhYzQyMiIsInJlYWxtTmFtZSI6ImN1c3RvbVJlYWxtIiwidW5pcXVlU2VjdXJpdHlOYW1lIjoidXNlcjciLCJpc3MiOiJodHRwczovL2lsb24xLmljcDo5NDQzL29pZGMvZW5kcG9pbnQvT1AiLCJhdWQiOiJkMGIwOGIzZGQxYWUzM2FlNWRhNTE1YzQwZGRhYWZlYyIsImV4cCI6MTU1ODcyOTQ0NywiaWF0IjoxNTU4NzAwNjQ3LCJzdWIiOiJ1c2VyNyIsInRlYW1Sb2xlTWFwcGluZ3MiOlsiaWNwOnRlYW0tMDc6YWRtaW4iLCJpY3A6ZGVmYXVsdDptZW1iZXIiLCJpY3A6ZGVmYXVsdDp0ZWFtYWRtaW4iXX0.bRLE-uoVp-wR-t4cnniNGwGGoQMhC9X4nKWdu0Gt752ugKc1ZGzaq3kvqjfr95CWzEp9hy025JZ2JBm1w8vNm7IUX2hkpXiFD1i9NfVCtYz1KLdWrFeBrHIqdTJerKSiaVT8wZjiUemB01DopxNEU2kFiZR3uIDcn9bOrew4HWNNBI9exa-xjgZWlt3XwbbQSaVhbJsQbzW4ubWPCOpL57OisbILUc-AT9QYbYXRii9j-UKtG5YXOBWmQKSO6tFDUMm4TUDys8XJ8ITyr4T_KDccUTVT4GGYnjP95H9sgSNCRFlc4PdahwPO5c6lq37nuA1Qecu3QR2erKSPUBP4kA
