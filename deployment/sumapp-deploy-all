@@ -33,4 +33,4 @@ spec:
     - port: 80
       targetPort: 9080
   selector:
-app: $appname
+   app: $appname
